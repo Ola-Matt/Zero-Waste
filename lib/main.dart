@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:zero_waste/providers/chat_data.dart';
-import 'package:zero_waste/providers/user_data.dart';
+import 'package:zero_waste/providers/signup_auth.dart';
 import 'package:zero_waste/screens/Types_of_farmers.dart';
 import 'package:zero_waste/screens/home_screen/chat_screen.dart';
 import 'package:zero_waste/screens/home_screen/home.dart';
@@ -32,7 +32,7 @@ void main() {
         ChangeNotifierProvider(create: (context) => OnBoardingProvider()),
         ChangeNotifierProvider(create: (context) => Authentication()),
         ChangeNotifierProvider(create: (context) => ChatData()),
-        ChangeNotifierProvider(create: (context) => CreateUser())
+        ChangeNotifierProvider(create: (context) => SignupAuth())
       ],
       child: const ZeroWaste(),
     ),
@@ -62,7 +62,7 @@ class ZeroWaste extends StatelessWidget {
         '/ProfileAccount': (context) => const ProfileAccount(),
         '/Feeds': (context) => FeedsPage(),
         '/Home': (context) => const HomeScreen(),
-        '/Types': (context) => Types(),
+        '/Types': (context) => UserType(),
         '/Chats': (context) => const ChatScreen()
       },
       debugShowCheckedModeBanner: false,

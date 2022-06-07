@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_waste/constants/constant.dart';
-import 'package:zero_waste/providers/user_data.dart';
+import '../../providers/signup_auth.dart';
 import '../../widgets/text_field_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -14,10 +14,16 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _stateController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final userDetails = Provider.of<CreateUser>(context);
+    //State Management
+    final userDetails = Provider.of<SignupAuth>(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -34,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 15),
                   //Name
                   TextFields(
-                    controller: userDetails.nameController,
+                    controller: _nameController,
                     label: 'Full Name',
                     showText: false,
                     phoneField: false,
@@ -42,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 16),
                   //Phone Number
                   TextFields(
-                    controller: userDetails.phoneController,
+                    controller: _phoneController,
                     label: 'Phone Number',
                     showText: false,
                     phoneField: true,
@@ -50,7 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 16),
                   //Home Address
                   TextFields(
-                    controller: userDetails.addressController,
+                    controller: _addressController,
                     label: 'Home Address',
                     showText: false,
                     phoneField: false,
@@ -58,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 16),
                   //State
                   TextFields(
-                    controller: userDetails.stateController,
+                    controller: _stateController,
                     label: 'State',
                     showText: false,
                     phoneField: false,
@@ -66,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 16),
                   //Password
                   TextFields(
-                    controller: userDetails.passwordController,
+                    controller: _passwordController,
                     label: 'Password',
                     showText: true,
                     phoneField: false,
@@ -95,11 +101,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          userDetails.getUserName();
-                          userDetails.getPhoneNo();
-                          userDetails.getAddress();
-                          userDetails.getState();
-                          userDetails.getPassword();
+                          userDetails.getName(_nameController.text);
+                          userDetails.getPhone(_phoneController.text);
+                          userDetails.getAddress(_addressController.text);
+                          userDetails.getState(_stateController.text);
                           Navigator.pushNamed(context, '/Reason');
                         }
                       },

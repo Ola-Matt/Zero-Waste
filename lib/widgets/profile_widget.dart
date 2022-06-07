@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_waste/constants/constant.dart';
-
+import 'package:zero_waste/providers/signup_auth.dart';
 import '../providers/authentication.dart';
-import '../providers/user_data.dart';
 
 AppBar userAppBar(BuildContext context) {
   return AppBar(
@@ -32,7 +31,7 @@ Column userPopularity(String num, String category) {
 
 Container userInfo(BuildContext context) {
   final userDetails = Provider.of<Authentication>(context);
-  final user = Provider.of<CreateUser>(context);
+  final user = Provider.of<SignupAuth>(context);
   return Container(
     width: 327,
     height: 300,

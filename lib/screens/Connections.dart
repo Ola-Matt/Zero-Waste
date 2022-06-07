@@ -28,7 +28,7 @@ class Connections extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Types()),
+                                builder: (context) => const UserType()),
                           );
                         },
                       ),

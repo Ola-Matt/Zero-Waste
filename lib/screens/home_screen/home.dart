@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_waste/screens/Types_of_farmers.dart';
 import 'package:zero_waste/screens/home_screen/chat_screen.dart';
 import 'package:zero_waste/screens/home_screen/account_screen.dart';
 import 'package:zero_waste/screens/home_screen/feed_screen.dart';

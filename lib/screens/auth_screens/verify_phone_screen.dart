@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_waste/constants/constant.dart';
+import 'package:zero_waste/providers/signup_auth.dart';
 
 import '../../providers/user_data.dart';
 
@@ -16,7 +17,7 @@ class VerifyPhoneScreen extends StatefulWidget {
 class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   @override
   Widget build(BuildContext context) {
-    final userPhone = Provider.of<CreateUser>(context);
+    final userPhone = Provider.of<SignupAuth>(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

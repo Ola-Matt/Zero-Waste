@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zero_waste/constants/constant.dart';
-import 'package:zero_waste/models/user.dart';
+import 'package:zero_waste/providers/signup_auth.dart';
 import '../../models/market_items.dart';
 
 class Home extends StatefulWidget {
@@ -24,31 +25,35 @@ class _HomeState extends State<Home> {
         date: '17/22/2003'),
   ];
 
-  User userProfile = User();
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<SignupAuth>(context);
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(18, 18, 18, 0),
-        child: Scaffold(
-          appBar: AppBar(
-            leading: GestureDetector(
-              //Show User display picture
-              child:
-                  Image.asset('assets/images/guy.png', height: 38, width: 38),
-              onTap: () => Navigator.pushNamed(context, '/ProfileAccount'),
-            ),
-            title: Text('Welcome, ${userProfile.name}', style: headerText),
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
-          body: ConstrainedBox(
+        padding: const EdgeInsets.symmetric(horizontal: 18),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: ConstrainedBox(
             constraints:
                 BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  const SizedBox(height: 29),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        //Show User display picture
+                        child: Image.asset('assets/images/guy.png',
+                            height: 38, width: 38),
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/ProfileAccount'),
+                      ),
+                      Text('Welcome, ${user.name}', style: headerText),
+                    ],
+                  ),
                   const SizedBox(height: 29),
                   Container(
                     constraints:
